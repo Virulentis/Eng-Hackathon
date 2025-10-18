@@ -10,15 +10,19 @@ size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::string* out
     return size * nmemb;
 }
 
-
 std::string searchCanvas(std::string tail_url){
     CURL* curl;
     CURLcode res;
     std::string readBuffer;
-
     std::string base_url = "https://canvas.sfu.ca/api/v1/users/self";
-    std::string token = "7h3KhXftyMJL9c6nezhFk7kuZCQcL4Uk6VKa3WAf8QtmCcGQRcvUw2ePA8Jy9CUT";
     std::string url = base_url + tail_url;
+
+    const char* env = std::getenv("CANVAS_TOKEN");
+    if (!env || std::string(env).empty()) {
+        std::cerr << "CANVAS_TOKEN not set. Put it in .env and run: set -o allexport; source .env; set +o allexport\n";
+        return "";
+    }
+    std::string token(env);
 
     curl = curl_easy_init();
     if (!curl) return "";
