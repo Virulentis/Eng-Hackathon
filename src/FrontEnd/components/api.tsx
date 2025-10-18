@@ -8,6 +8,7 @@ function Api_call(){
     const [name, setName] = useState('');
     const [response, setResponse] = useState('');
     const [loading, setLoading] = useState(false);
+    
 
     // Fetch on component mount
     useEffect(() => {
@@ -30,13 +31,13 @@ function Api_call(){
 
     const sendData = async () => {
         if (!name.trim()) {
-            alert('Please enter a name');
+            alert('Enter data');
             return;
         }
 
         setLoading(true);
         try {
-            const res = await fetch('http://localhost:8080/api/data', {
+            const res = await fetch('http://localhost:8080/api/find_classes', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'text/plain',

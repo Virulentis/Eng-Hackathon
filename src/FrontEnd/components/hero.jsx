@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button"
 
 export default function Hero() {
   return (
-    <div className="min-h-screen flex items-center justify-center " id="Hero">
+    
+    <div className="bg-[./Assignments.jpg] min-h-screen flex items-center justify-center "  id="Hero">
       <div className="text-center animate-fade-in text-white px-2 max-w-2xl">
         <h1 className="text-6xl font-bold mb-6 "> 
           Assignment Checker
