@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+
+@font-face {
+  font-family: 'Permanent Marker';
+  src: url('/PermanentMarker-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-family-permanent-marker: 'Permanent Marker', cursive;
+}
