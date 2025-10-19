@@ -2,6 +2,7 @@
 import { ThemeProvider } from "@/components/theme-provider"
 import './App.css'
 import Api_call from "@/components/api"
+import Hero from "@/components/hero.jsx"
 
 function App() {
   
@@ -9,7 +10,8 @@ function App() {
   return (
     <ThemeProvider defaultTheme="dark" 
     storageKey="vite-ui-theme">
-      <Api_call></Api_call>
+      <Hero></Hero>
+      <Api_call id="find"></Api_call>
     
     </ThemeProvider>
   )

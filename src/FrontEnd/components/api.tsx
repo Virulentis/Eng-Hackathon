@@ -8,6 +8,7 @@ function Api_call(){
     const [name, setName] = useState('');
     const [response, setResponse] = useState('');
     const [loading, setLoading] = useState(false);
+    
 
     // Fetch on component mount
     useEffect(() => {
@@ -30,13 +31,13 @@ function Api_call(){
 
     const sendData = async () => {
         if (!name.trim()) {
-            alert('Please enter a name');
+            alert('Enter data');
             return;
         }
 
         setLoading(true);
         try {
-            const res = await fetch('http://localhost:8080/api/data', {
+            const res = await fetch('http://localhost:8080/api/find_classes', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'text/plain',
@@ -64,7 +65,7 @@ function Api_call(){
                     disabled={loading}
                     className="w-full"
                 >
-                    {loading ? <Spinner /> : 'Test'}
+                    {loading ? <Spinner /> : 'Test Connection'}
                 </Button>
                 {message && (
                     <div className="p-4 border rounded-md w-full">
@@ -80,7 +81,7 @@ function Api_call(){
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Enter your name"
+                    placeholder="Enter Token here!"
                     className="px-4 py-2 border rounded-md"
                 />
                 <Button
