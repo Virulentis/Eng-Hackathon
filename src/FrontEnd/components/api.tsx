@@ -1,6 +1,16 @@
 import { Button } from "@/components/ui/button"
 import { useState, useEffect } from 'react'
 import { Spinner } from "@/components/ui/spinner"
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 function Api_call(){
 
@@ -45,6 +55,7 @@ function Api_call(){
                 body: name
             });
             const text = await res.text();
+            const parsedData = JSON.parse(text)
             setResponse(text);
         } catch (error) {
             console.error('Error posting:', error);
@@ -55,25 +66,8 @@ function Api_call(){
     };
 
     return (
-    <div className="flex min-h-svh flex-col items-center justify-center gap-6 p-4">
-        <div className="flex flex-col items-center gap-4 w-full max-w-md">
+    <div className="flex min-h-svh flex-col items-center justify-center ">
 
-            {/* GET */}
-            <div className="flex flex-col items-center gap-2 w-full">
-                <Button
-                    onClick={fetchHello}
-                    disabled={loading}
-                    className="w-full"
-                >
-                    {loading ? <Spinner /> : 'Test Connection'}
-                </Button>
-                {message && (
-                    <div className="p-4 border rounded-md w-full">
-                        <p className="text-sm font-semibold">Response:</p>
-                        <p>{message}</p>
-                    </div>
-                )}
-            </div>
 
             {/* POST */}
             <div className="flex flex-col gap-2 w-full">
@@ -90,16 +84,32 @@ function Api_call(){
                     variant="secondary"
                     className="w-full"
                 >
-                    {loading ? <Spinner /> : 'Request to server'}
+                    {loading ? <Spinner /> : 'Send Request'}
                 </Button>
                 {response && (
-                    <div className="p-4 border rounded-md w-full">
-                        <p className="text-sm font-semibold">Server Response:</p>
-                        <p>{response}</p>
-                    </div>
+                
+                        
+                   
+
+                        <ScrollArea className="h-[600px] w-full rounded-md border">
+                            <div className="flex flex-col space-y-4 p-4">
+                                {JSON.parse(response).map((card) => (
+                                <Card key={card.id}>
+                                    <CardHeader>
+                                    <CardTitle>{card.course_name}</CardTitle>
+                                    <CardDescription>Created at: {card.created_at} </CardDescription>
+                                    </CardHeader>
+                                    <CardContent>
+                                    <p>{card.name} Due at: {card.due_at}</p>
+                                    </CardContent>
+                                </Card>
+                                ))}
+                            </div>
+                        </ScrollArea>
+
                 )}
             </div>
-        </div>
+        
     </div>
 
     )
