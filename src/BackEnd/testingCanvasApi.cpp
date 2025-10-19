@@ -252,8 +252,8 @@ std::string parseOutputData(std::string output){
 }
 
 int main() {
-    std::cout << parseOutputData(searchCanvasAssignments());
-    std::cout << "\n";
+    // std::cout << parseOutputData(searchCanvasAssignments());
+    // std::cout << "\n";
     
 
     return 0;
