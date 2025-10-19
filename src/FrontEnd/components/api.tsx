@@ -94,15 +94,15 @@ function Api_call(){
                         <ScrollArea className="h-[600px] w-full rounded-md border">
                             <div className="flex flex-col space-y-4 p-4">
                                 {JSON.parse(response).map((card) => (
-                                <Card key={card.id}>
+                                card.course_name && (<Card key={card.id}>
                                     <CardHeader>
                                     <CardTitle>{card.course_name}</CardTitle>
                                     <CardDescription>Created at: {card.created_at} </CardDescription>
                                     </CardHeader>
                                     <CardContent>
-                                    <p>{card.name} Due at: {card.due_at}</p>
+                                    <p>{card.name}  {card.due_at && ` Due at: ${card.due_at}`}</p>
                                     </CardContent>
-                                </Card>
+                                </Card>)
                                 ))}
                             </div>
                         </ScrollArea>
